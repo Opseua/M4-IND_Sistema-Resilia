@@ -1,4 +1,4 @@
-# Sendo Servido
+# Sistema Resilia
 ![NPM](https://img.shields.io/npm/l/react)
 
 
@@ -8,12 +8,12 @@
 
 A proposta do projeto foi criar um modelo de banco de dados fícticio para o sistema de acompanhamento da **Resilia**.
 
-Nessa modelagem temos 3 entidades já existentes ('cursos', 'turmas' e 'alunos'). Além de planejar e eleborador o banco de dados, devemos responder algumas perguntas feitas pelo cliente do banco de dados:
+Nessa modelagem temos 3 entidades já existentes ('cursos', 'turmas' e 'alunos'). Além de planejar e elaborador o banco de dados, devemos responder algumas perguntas feitas pelo cliente do banco de dados:
 
 
 **1 - Existem outras entidades além dessas três?** 
 
-Sim!;
+Sim!
 
 **2 - Quais são os principais campos e tipos?** 
 
@@ -42,7 +42,7 @@ As 'turmas' estão conectadas aos 'cursos' pela (FK) com a (PK) 'curso_id' e tam
 
 # Apresentação da modelagem
 
- ![modelagem](https://raw.githubusercontent.com/Opseua/M4-IND_Sistema-Resilia/main/sistema_resilia-diagrama.png)!
+ ![modelagem](https://raw.githubusercontent.com/Opseua/M4-IND_Sistema-Resilia/main/sistema_resilia-diagrama.png)
 
 
 
@@ -90,10 +90,10 @@ CREATE TABLE cursos (
 
 -- Criar tabela (entidade)
 CREATE TABLE funcionarios (
-	funcionario_cpf INT PRIMARY KEY NOT NULL,
+	funcionario_cpf VARCHAR(11) PRIMARY KEY NOT NULL,
 	funcionario_nome VARCHAR(255) NOT NULL,
-	funcionario_telefone INT NOT NULL,
-	funcionario_nascimento INT NOT NULL,
+	funcionario_telefone VARCHAR(11) NOT NULL,
+	funcionario_nascimento VARCHAR(11) NOT NULL,
 	funcionario_email VARCHAR(255) NOT NULL,
 	funcionario_endereco_logradouro VARCHAR(255) NOT NULL,
 	funcionario_endereco_numero VARCHAR(10) NOT NULL,
@@ -109,10 +109,10 @@ CREATE TABLE funcionarios (
 
 -- Criar tabela (entidade)
 CREATE TABLE alunos (
-	aluno_cpf INT PRIMARY KEY NOT NULL,
+	aluno_cpf VARCHAR(11) PRIMARY KEY NOT NULL,
 	aluno_nome VARCHAR(255) NOT NULL,
-	aluno_telefone INT NOT NULL,
-	aluno_nascimento INT NOT NULL,
+	aluno_telefone VARCHAR(11) NOT NULL,
+	aluno_nascimento VARCHAR(11) NOT NULL,
 	aluno_email VARCHAR(255) NOT NULL,
 	aluno_endereco_logradouro VARCHAR(255) NOT NULL,
 	aluno_endereco_numero VARCHAR(10) NOT NULL,
@@ -133,13 +133,12 @@ CREATE TABLE turmas (
 	turma_metodo VARCHAR(50) NOT NULL,
 	
 	curso_id INT NOT NULL,
-	funcionario_cpf INT NOT NULL,
-	aluno_cpf INT NOT NULL,
+	funcionario_cpf VARCHAR(11) NOT NULL,
+	aluno_cpf VARCHAR(11) NOT NULL,
 	FOREIGN KEY (curso_id) REFERENCES cursos (curso_id),
 	FOREIGN KEY (funcionario_cpf) REFERENCES funcionarios (funcionario_cpf),
     FOREIGN KEY (aluno_cpf) REFERENCES alunos (aluno_cpf)
 );
-
 ```
 
 _Preenchimento dos dados_
@@ -190,9 +189,85 @@ INSERT INTO cursos (curso_id, curso_nome, curso_categoria, curso_duracao, curso_
     
 	('6', 'Informática básica', 'Informática', '5 meses', '06/06/2022', '16/06/2023', '11848796958789'),
     
-	('7', 'Montagem e Manutenção', 'Informática', '7 meses', '07/07/2022', '17/07/2023', '7449596584864'),
+    ('7', 'Informática básica', 'Informática', '5 meses', '07/07/2022', '17/07/2023', '74495965848640'),
     
-	('8', 'Redes', 'Informática', '3 meses', '08/08/2022', '18/08/2023', '19628496486948');
+    ('8', 'Montagem e Manutenção', 'Informática', '6 meses', '08/08/2022', '18/08/2023', '19628496486948');
+    
+-- Inserir dados na tabela (entidade)
+INSERT INTO funcionarios (funcionario_cpf, funcionario_nome, funcionario_telefone, funcionario_nascimento, funcionario_email, 
+funcionario_endereco_logradouro, funcionario_endereco_numero, funcionario_endereco_complemento, funcionario_endereco_bairro, 
+funcionario_endereco_municipio, funcionario_endereco_uf, funcionario_endereco_cep, instituicao_cnpj) VALUES 
+    
+	('14458245685', 'Jéssica Cardoso', '21975242566', '01/01/1981', 'jessica_cardoso@gmail.com', 'Rua Doutor Ramos', '235', 'AP 235',
+    'Jardim Guanabara', 'Rio de Janeiro', 'RJ', '23585999', '33014556000196'),
+    
+    ('29694949499', 'Marlene Braz', '21987426551', '02/02/1982', 'marlene_braz@gmail.com', 'Rua Lima Duarte', '16', 'AP 135',
+    'Tauá', 'Nova Iguaçu', 'RJ', '21815415', '33518548485451'),
+    
+    ('20528841848', 'Poliana Medina', '21966463821', '03/03/1983', 'poliana_medina@gmail.com', 'Av dos Democáticos', '936', 'CS 9',
+    'Bancários', 'Rio de Janeiro', 'RJ', '23485418', '21564984521498'),
+    
+    ('26294848488', 'Raquel Boaventura', '21977561512', '04/04/1984', 'raquel_boaventura@gmail.com', 'Av Lima Freire', '216', '',
+    'Freguesia', 'Rio de Janeiro', 'RJ', '25596459', '11989587965484'),
+    
+    ('82564848541', 'Clara Moura', '21996181584', '05/05/1985', 'clara_moura@gmail.com', 'Rua Romeu Silva', '62', '',
+    'Palmeira', 'São Gonçalo', 'RJ', '29652964', '36498148549611'),
+    
+    ('92924848484', 'Lúcia Ito', '21974441511', '06/06/1986', 'lucia_ito@gmail.com', 'Rua Os Sinos', '4', 'SOBRADO',
+    'Galeão', 'Rio de Janeiro', 'RJ', '27296559', '11848796958789'),
+    
+    ('58584848484', 'Henrique Justino', '21965181564', '07/07/1987', 'henrique_justino@gmail.com', 'Rua Cambaúba', '39', '',
+    'Itaóca', 'São Gonçalo', 'RJ', '23569595', '74495965848640'),
+    
+    ('28484848421', 'Manoel Rezende', '21996184155', '08/08/1998', 'manoel_rezende@gmail.com', 'Rua Garcez', '1584', 'AP 102',
+    'Irajá', 'Rio de Janeiro', 'RJ', '28216512', '19628496486948');
+    
+-- Inserir dados na tabela (entidade)
+INSERT INTO alunos (aluno_cpf, aluno_nome, aluno_telefone, aluno_nascimento, aluno_email, aluno_endereco_logradouro, aluno_endereco_numero, 
+aluno_endereco_complemento, aluno_endereco_bairro, aluno_endereco_municipio, aluno_endereco_uf, aluno_endereco_cep) VALUES 
+
+	('14458774588', 'Benício Cordeiro', '21992456899', '01/01/1991', 'benicio_cordeiro@gmail.com', 'Rua Maria Joaquina', '20', 'AP 101',
+	'Bangu', 'Rio de Janeiro', 'RJ', '23013852'),
+
+	('51561541562', 'Michel Araújo', '21962964165', '02/02/1992', 'michael_araujo@gmail.com', 'Av Brasil', '6526', 'AP 101',
+	'Campo Grande', 'Rio de Janeiro', 'RJ', '24655614'),
+
+	('96525612568', 'Ivo Justo', '21999612845', '03/03/1993', 'ivo_justo@gmail.com', 'Av das Américas', '26512', '',
+	'Barra da Tijuca', 'Rio de Janeiro', 'RJ', '23129529'),
+
+	('29626365652', 'Marcelo Fontes', '21971854185', '04/04/1994', 'marcelo_fontes@gmail.com', 'Av Atlântica', '23', 'CS 2',
+	'Ipanema', 'Rio de Janeiro', 'RJ', '24969592'),
+
+	('39659659565', 'César Canto', '21996204964', '06/06/1996', 'cesar_canto@gmail.com', 'Rua Pedro Silva', '12', '',
+	'Centro', 'Duque de Caxias', 'RJ', '21894189'),
+
+	('92641256125', 'Cleiton Leitão', '21994856848', '01/01/1991', 'cleiton_leitao@gmail.com', 'Rua dos Amigos', '469', '',
+	'Itaipú', 'Niterói', 'RJ', '23556956'),
+
+	('62655969654', 'Virgínia Leal', '21997248666', '07/07/1997', 'virginia_leal@gmail.com', 'Travessa Tavares', '25', 'AP 808',
+	'São Vicente', 'São Gonçalo', 'RJ', '21265962'),
+
+	('71654165128', 'Clarice Melo', '21999744524', '08/08/1998', 'clarice_melo@gmail.com', 'Rua Dom Joaquim', '358', 'SOBRADO',
+	'Leme', 'Rio de Janeiro', 'RJ', '22656585');
+
+-- Inserir dados na tabela (entidade)
+INSERT INTO turmas (turma_id, turma_turno, turma_sala, turma_andar, turma_vagas, turma_metodo, curso_id, funcionario_cpf, aluno_cpf) VALUES 
+
+	('1', 'MANHÃ', '105', '1', '20', 'Presencial', '1', '14458245685', '14458774588'),
+    
+    ('2', 'NOITE', '305', '3', '25', 'Distância', '2', '29694949499', '51561541562'),
+    
+    ('3', 'NOITE', '604', '6', '30', 'Presencial', '3', '20528841848', '96525612568'),
+    
+    ('4', 'MANHÃ', '102', '1', '15', 'Distância', '4', '26294848488', '29626365652'),
+
+	('5', 'TARDE', '804', '8', '20', 'Presencial', '5', '82564848541', '39659659565'),
+    
+    ('6', 'TARDE', '220', '2', '30', 'Presencial', '6', '92924848484', '92641256125'),
+    
+    ('7', 'NOITE', '206', '2', '20', 'Presencial', '7', '58584848484', '62655969654'),
+    
+    ('8', 'MANHÃ', '109', '1', '30', 'Distância', '8', '28484848421', '71654165128');
 ```
 
 
