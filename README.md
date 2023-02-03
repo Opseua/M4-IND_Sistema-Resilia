@@ -6,7 +6,7 @@
 
 # Sobre o projeto
 
-A proposta do projeto foi criar um modelo de banco de dados fícticio para o sistema de acompanhamento da **Resilia**.
+A proposta do projeto foi criar um modelo de banco de dados fictício para o sistema de acompanhamento da **Resilia**.
 
 Nessa modelagem temos 3 entidades já existentes ('cursos', 'turmas' e 'alunos'). Além de planejar e elaborador o banco de dados, devemos responder algumas perguntas feitas pelo cliente do banco de dados:
 
